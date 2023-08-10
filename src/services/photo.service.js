@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.API_URL; // Change this to your backend URL
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL; // Change this to your backend URL
 
 const apiService = axios.create({
   baseURL: API_BASE_URL,

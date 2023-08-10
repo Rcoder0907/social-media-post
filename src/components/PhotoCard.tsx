@@ -36,7 +36,7 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo, addCommentToPhoto }) => {
         <Card maxW='md' mb={2}>
             <Image
               objectFit='cover'
-              src={`${process.env.API_URL}/uploads/${photo.fileName}`}
+              src={`${process.env.NEXT_PUBLIC_API_URL}/uploads/${photo.fileName}`}
               alt='Post'
             />
 

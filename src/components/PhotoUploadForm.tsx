@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Center, Button, Input, Text, Box, Card, CardBody } from '@chakra-ui/react';
 
 interface PhotoUploadFormProps {
@@ -9,6 +9,7 @@ interface PhotoUploadFormProps {
 
 const PhotoUploadForm: React.FC<PhotoUploadFormProps> = ({ onUpload }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const inputFileRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -20,6 +21,10 @@ const PhotoUploadForm: React.FC<PhotoUploadFormProps> = ({ onUpload }) => {
     if (selectedFile) {
       onUpload(selectedFile);
       setSelectedFile(null);
+
+      if (inputFileRef.current) {
+        inputFileRef.current.value = '';
+      }
     }
   };
 
@@ -30,7 +35,7 @@ const PhotoUploadForm: React.FC<PhotoUploadFormProps> = ({ onUpload }) => {
           <CardBody>
 
             <Text mb={2}>Select a photo to upload:</Text>
-            <Input type="file" accept="image/*" onChange={handleFileChange} />
+            <Input type="file" accept="image/*" ref={inputFileRef} onChange={handleFileChange} />
             <Button mt={2} mb={2} size="sm" colorScheme="blue" onClick={handleUpload} disabled={!selectedFile}>
               Upload Photo
             </Button>

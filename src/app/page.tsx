@@ -50,8 +50,8 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <PhotoUploadForm onUpload={handleUpload} />
-      {photos.map((photo) => (
-          <PhotoCard photo={photo} addCommentToPhoto={handleComment} />
+      {photos.map((photo, index) => (
+          <PhotoCard key={index} photo={photo} addCommentToPhoto={handleComment} />
         ))}
 
     </main>
